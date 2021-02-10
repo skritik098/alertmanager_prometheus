@@ -1,0 +1,8 @@
+[alertmanager]
+localhost ansible_user= ansible_password= ansible_become_password=
+
+[prometheus]
+localhost ansible_user= ansible_password= ansible_become_password=
+
+[node_exporter]
+localhost ansible_user= ansible_password= ansible_become_password=

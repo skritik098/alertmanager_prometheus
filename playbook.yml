@@ -1,0 +1,11 @@
+- hosts: alertmanager
+  become: yes
+  become_method: sudo
+  roles:
+    - alertingmanager
+    
+- hosts: prometheus
+  become: yes
+  become_method: sudo
+  roles:
+    - prometheus_configure_alertmanager
