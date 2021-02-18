@@ -1,6 +1,6 @@
 ---
 # tasks file for alertingmanager
-- name: Creating node_exporter user group
+- name: Creating alerting manager user group
   group: name="{{groupId}}"
   become: true
 
@@ -56,8 +56,8 @@
 
 
 - name: Copy config file
-  copy:
-    src: "{{ role_path }}/files/alertmanager.yml"
+  template:
+    src: "{{ role_path }}/templates/alertmanager.yml.j2"
     dest: /etc/alertmanager/alertmanager.yml
 
 - name: Copy systemd init file

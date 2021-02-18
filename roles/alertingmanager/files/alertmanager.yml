@@ -9,10 +9,20 @@ route:
   routes:
   - match:
       alertname: InstanceDown
-  receiver: 'alert-team'
+  receiver: 'alert'
+
+# receivers:
+# - name: 'alert-team'
+#   slack_configs:
+#   - channel: "#webhook-test"
+#     text: "summary: {{ .CommonAnnotations.summary }}\ndescription: {{ .CommonAnnotations.description }}"
 
 receivers:
-- name: 'alert-team'
-  slack_configs:
-  - channel: "#webhook-test"
-    text: "summary: {{ .CommonAnnotations.summary }}\ndescription: {{ .CommonAnnotations.description }}"
+- name: "alerta"
+  webhook_configs:
+  - url: 'http://alerta:8080/api/webhooks/prometheus'
+    send_resolved: true
+    http_config:
+      basic_auth: 
+        username: admin@alerta.io
+        password: alerta
